@@ -11,5 +11,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     background-color: ${({ theme }) => theme.background};
     font-family: "Baloo 2", sans-serif;
+    padding-left: 6rem;
+    padding-right: 6rem;
   }
 `
