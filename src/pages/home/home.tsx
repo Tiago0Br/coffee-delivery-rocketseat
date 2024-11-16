@@ -1,4 +1,4 @@
-import { Minus, Plus, ShoppingCart } from 'phosphor-react'
+import { Minus, Plus, ShoppingCart, ShoppingCartSimple } from 'phosphor-react'
 import coffeeDeliveryLogo from '../../assets/coffee-delivery.png'
 import {
   CartIcon,
@@ -15,7 +15,16 @@ import {
   ItemsContainer,
   Slogan,
   Subtitle,
-  Title
+  CoffeeTag,
+  CoffeeTagContainer,
+  Title,
+  CoffeeTitle,
+  CoffeeDescription,
+  CoffeePriceContainer,
+  CoffeePrice,
+  CoffeeButtonsContainer,
+  CoffeeButton,
+  CartContainer
 } from './styles'
 import coffeeList from '../../data/coffees.json'
 
@@ -49,7 +58,11 @@ export function Home() {
             </Item>
           </ItemsContainer>
         </div>
-        <img src={coffeeDeliveryLogo} alt="Coffee Delivery Banner" />
+        <img
+          src={coffeeDeliveryLogo}
+          alt="Coffee Delivery Banner"
+          draggable={false}
+        />
       </IntroContainer>
       <CoffeeContainer>
         <Subtitle>Nossos cafés</Subtitle>
@@ -60,27 +73,31 @@ export function Home() {
 
             return (
               <CoffeeItem key={coffee.title}>
-                <img src={image} alt={coffee.title} />
-                <div>
+                <img src={image} alt={coffee.title} draggable={false} />
+                <CoffeeTagContainer>
                   {coffee.tags.map((tag) => (
-                    <span key={tag}>{tag}</span>
+                    <CoffeeTag key={tag}>{tag}</CoffeeTag>
                   ))}
-                </div>
-                <h3>{coffee.title}</h3>
-                <p>{coffee.description}</p>
-                <div>
-                  <span>
+                </CoffeeTagContainer>
+                <CoffeeTitle>{coffee.title}</CoffeeTitle>
+                <CoffeeDescription>{coffee.description}</CoffeeDescription>
+                <CoffeePriceContainer>
+                  <CoffeePrice>
                     R$ <strong>9,90</strong>
-                  </span>
-                  <div>
-                    <Plus />
+                  </CoffeePrice>
+                  <CoffeeButtonsContainer>
+                    <CoffeeButton>
+                      <Minus />
+                    </CoffeeButton>
                     <span>1</span>
-                    <Minus />
-                  </div>
-                  <div>
-                    <ShoppingCart />
-                  </div>
-                </div>
+                    <CoffeeButton>
+                      <Plus />
+                    </CoffeeButton>
+                  </CoffeeButtonsContainer>
+                  <CartContainer>
+                    <ShoppingCartSimple />
+                  </CartContainer>
+                </CoffeePriceContainer>
               </CoffeeItem>
             )
           })}

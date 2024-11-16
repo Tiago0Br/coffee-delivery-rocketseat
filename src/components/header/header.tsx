@@ -11,7 +11,7 @@ import logo from '../../assets/coffee-delivery-logo.png'
 export function Header() {
   return (
     <HeaderContainer>
-      <img src={logo} alt="Coffee Delivery logo" />
+      <img src={logo} alt="Coffee Delivery logo" draggable={false} />
       <ButtonContainer>
         <LocationButton>
           <MapPinIcon size={22} />
