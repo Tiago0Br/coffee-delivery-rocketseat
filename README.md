@@ -1,50 +1,31 @@
-# React + TypeScript + Vite
+# Projeto Coffee Delivery - Rocketseat
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descrição
 
-Currently, two official plugins are available:
+Desafio do nível 2 da Formação de React da Rocketseat.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tecnologias
 
-## Expanding the ESLint configuration
+<a href="https://www.typescriptlang.org/" title="Typescript" target="_blank">
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png" heigth="50px" width="50px" />
 
-- Configure the top-level `parserOptions` property like this:
+</a>
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+<a href="https://styled-components.com/" title="Styled Components" target="_blank">
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+<img src="https://www.devmedia.com.br/imagens/articles/artigo-utilizando-styled-components-no-react-43554.png" heigth="50px" width="70px" />
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+</a>
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+<a href="https://vite.dev/" title="Vite" target="_blank">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Vitejs-logo.svg" heigth="50px" width="50px" />
+
+</a>
+
+- React + Typescript
+- Styled Components
+- Vite
+
+Feito com 💜 &nbsp;por [Tiago Lopes](https://tiagolopes.vercel.app/) 👋

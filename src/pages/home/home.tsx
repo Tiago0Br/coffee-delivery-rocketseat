@@ -1,32 +1,17 @@
-import { Minus, Plus, ShoppingCart, ShoppingCartSimple } from 'phosphor-react'
-import coffeeDeliveryLogo from '../../assets/coffee-delivery.png'
-import {
-  CartIcon,
-  BoxIcon,
-  TimerIcon,
-  CoffeeIcon
-} from '../../components/icons'
+import coffeeDeliveryLogo from '@/assets/coffee-delivery.png'
+import { CartIcon, BoxIcon, TimerIcon, CoffeeIcon } from '@/components/icons'
+import coffeeList from '@/data/coffees.json'
+import { CoffeeItem } from '@/components/coffee-item/coffee-item'
 import {
   CoffeeContainer,
-  CoffeeItem,
   CoffeeList,
   IntroContainer,
   Item,
   ItemsContainer,
   Slogan,
   Subtitle,
-  CoffeeTag,
-  CoffeeTagContainer,
-  Title,
-  CoffeeTitle,
-  CoffeeDescription,
-  CoffeePriceContainer,
-  CoffeePrice,
-  CoffeeButtonsContainer,
-  CoffeeButton,
-  CartContainer
+  Title
 } from './styles'
-import coffeeList from '../../data/coffees.json'
 
 export function Home() {
   return (
@@ -68,39 +53,9 @@ export function Home() {
         <Subtitle>Nossos cafés</Subtitle>
 
         <CoffeeList>
-          {coffeeList.map((coffee) => {
-            const image = `/coffee/${coffee.image}`
-
-            return (
-              <CoffeeItem key={coffee.title}>
-                <img src={image} alt={coffee.title} draggable={false} />
-                <CoffeeTagContainer>
-                  {coffee.tags.map((tag) => (
-                    <CoffeeTag key={tag}>{tag}</CoffeeTag>
-                  ))}
-                </CoffeeTagContainer>
-                <CoffeeTitle>{coffee.title}</CoffeeTitle>
-                <CoffeeDescription>{coffee.description}</CoffeeDescription>
-                <CoffeePriceContainer>
-                  <CoffeePrice>
-                    R$ <strong>9,90</strong>
-                  </CoffeePrice>
-                  <CoffeeButtonsContainer>
-                    <CoffeeButton>
-                      <Minus />
-                    </CoffeeButton>
-                    <span>1</span>
-                    <CoffeeButton>
-                      <Plus />
-                    </CoffeeButton>
-                  </CoffeeButtonsContainer>
-                  <CartContainer>
-                    <ShoppingCartSimple />
-                  </CartContainer>
-                </CoffeePriceContainer>
-              </CoffeeItem>
-            )
-          })}
+          {coffeeList.map((coffee) => (
+            <CoffeeItem key={coffee.title} coffee={coffee} />
+          ))}
         </CoffeeList>
       </CoffeeContainer>
     </main>
