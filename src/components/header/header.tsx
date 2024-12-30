@@ -1,30 +1,25 @@
-import {
-  ButtonContainer,
-  HeaderContainer,
-  LocationButton,
-  MapPinIcon,
-  ShoppingCartButton,
-  ShoppingCartIcon
-} from './styles'
+import { MapPinLine, ShoppingCart } from 'phosphor-react'
 import logo from '@/assets/coffee-delivery-logo.png'
+import { defaultTheme as theme } from '@/styles/themes/default'
+import * as Styles from './styles'
 
 export function Header() {
   return (
-    <HeaderContainer>
+    <Styles.HeaderContainer>
       <a href="/">
         <img src={logo} alt="Coffee Delivery logo" draggable={false} />
       </a>
-      <ButtonContainer>
-        <LocationButton>
-          <MapPinIcon size={22} />
+      <Styles.ButtonContainer>
+        <Styles.LocationButton>
+          <MapPinLine size={22} color={theme['purple']} />
           Porto Alegre, RS
-        </LocationButton>
-        <ShoppingCartButton
+        </Styles.LocationButton>
+        <Styles.ShoppingCartButton
           onClick={() => (window.location.href = '/checkout')}
         >
-          <ShoppingCartIcon size={22} />
-        </ShoppingCartButton>
-      </ButtonContainer>
-    </HeaderContainer>
+          <ShoppingCart size={22} color={theme['yellow-dark']} />
+        </Styles.ShoppingCartButton>
+      </Styles.ButtonContainer>
+    </Styles.HeaderContainer>
   )
 }

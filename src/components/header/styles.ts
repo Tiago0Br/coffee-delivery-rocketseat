@@ -1,4 +1,3 @@
-import { MapPin, ShoppingCartSimple } from 'phosphor-react'
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
@@ -25,10 +24,6 @@ export const LocationButton = styled.button`
   cursor: pointer;
 `
 
-export const MapPinIcon = styled(MapPin)`
-  color: ${({ theme }) => theme.purple};
-`
-
 export const ShoppingCartButton = styled.button`
   gap: 0.5rem;
   background-color: ${({ theme }) => theme['yellow-light']};
@@ -36,8 +31,4 @@ export const ShoppingCartButton = styled.button`
   border: none;
   border-radius: 6px;
   cursor: pointer;
-`
-
-export const ShoppingCartIcon = styled(ShoppingCartSimple)`
-  color: ${({ theme }) => theme['yellow-dark']};
 `

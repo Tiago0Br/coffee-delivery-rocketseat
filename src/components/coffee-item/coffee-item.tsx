@@ -1,18 +1,6 @@
-import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react'
-import {
-  CartButton,
-  CoffeeButton,
-  CoffeeButtonsContainer,
-  CoffeeDescription,
-  CoffeeItemContainer,
-  CoffeePrice,
-  CoffeePriceContainer,
-  CoffeeQuantity,
-  CoffeeTag,
-  CoffeeTagContainer,
-  CoffeeTitle
-} from './styles'
 import { useState } from 'react'
+import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react'
+import * as Styles from './styles'
 
 export interface Coffee {
   title: string
@@ -41,32 +29,32 @@ export function CoffeeItem({
   }
 
   return (
-    <CoffeeItemContainer key={title}>
+    <Styles.CoffeeItemContainer key={title}>
       <img src={coffeeImage} alt={title} draggable={false} />
-      <CoffeeTagContainer>
+      <Styles.CoffeeTagContainer>
         {tags.map((tag) => (
-          <CoffeeTag key={tag}>{tag}</CoffeeTag>
+          <Styles.CoffeeTag key={tag}>{tag}</Styles.CoffeeTag>
         ))}
-      </CoffeeTagContainer>
-      <CoffeeTitle>{title}</CoffeeTitle>
-      <CoffeeDescription>{description}</CoffeeDescription>
-      <CoffeePriceContainer>
-        <CoffeePrice>
+      </Styles.CoffeeTagContainer>
+      <Styles.CoffeeTitle>{title}</Styles.CoffeeTitle>
+      <Styles.CoffeeDescription>{description}</Styles.CoffeeDescription>
+      <Styles.CoffeePriceContainer>
+        <Styles.CoffeePrice>
           R$ <strong>{price.toFixed(2).replace('.', ',')}</strong>
-        </CoffeePrice>
-        <CoffeeButtonsContainer>
-          <CoffeeButton onClick={decreaseQuantity}>
+        </Styles.CoffeePrice>
+        <Styles.CoffeeButtonsContainer>
+          <Styles.CoffeeButton onClick={decreaseQuantity}>
             <Minus />
-          </CoffeeButton>
-          <CoffeeQuantity>{quantity}</CoffeeQuantity>
-          <CoffeeButton onClick={increaseQuantity}>
+          </Styles.CoffeeButton>
+          <Styles.CoffeeQuantity>{quantity}</Styles.CoffeeQuantity>
+          <Styles.CoffeeButton onClick={increaseQuantity}>
             <Plus />
-          </CoffeeButton>
-        </CoffeeButtonsContainer>
-        <CartButton onClick={() => (window.location.href = '/checkout')}>
+          </Styles.CoffeeButton>
+        </Styles.CoffeeButtonsContainer>
+        <Styles.CartButton onClick={() => (window.location.href = '/checkout')}>
           <ShoppingCartSimple />
-        </CartButton>
-      </CoffeePriceContainer>
-    </CoffeeItemContainer>
+        </Styles.CartButton>
+      </Styles.CoffeePriceContainer>
+    </Styles.CoffeeItemContainer>
   )
 }
