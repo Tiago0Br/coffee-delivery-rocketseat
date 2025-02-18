@@ -1,50 +1,55 @@
 import styled from 'styled-components'
 
-export const IntroContainer = styled.div`
-  padding-top: 5rem;
+export const IntroContainer = styled.section`
   display: flex;
-  gap: 50px;
+  align-items: center;
+  gap: 4rem;
 `
 
-export const Title = styled.h1`
-  font-size: 48px;
+export const InfoContainer = styled.div`
   max-width: 588px;
-  font-weight: bolder;
-  line-height: 130%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 `
 
-export const Slogan = styled.p`
-  font-size: 20px;
-  max-width: 588px;
-  margin-top: 1rem;
-  line-height: 130%;
+export const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  h1 {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 3rem;
+    color: ${({ theme }) => theme.title};
+    line-height: 130%;
+  }
+
+  p {
+    font-size: 1.25rem;
+    color: ${({ theme }) => theme.subtitle};
+    line-height: 130%;
+  }
 `
 
 export const ItemsContainer = styled.div`
-  margin-top: 4rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  row-gap: 20px;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 `
 
-export const Item = styled.div`
+export const ItemIcon = styled.span<{ color: string }>`
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-`
-
-export const CoffeeContainer = styled.div`
-  margin-top: 4rem;
-`
-
-export const Subtitle = styled.h2`
-  font-size: 2rem;
-  line-height: 130%;
-`
-
-export const CoffeeList = styled.ul`
-  margin-top: 2rem;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2.5rem 2rem;
+  justify-content: center;
+  padding: 0.4rem;
+  border-radius: 100%;
+  color: ${({ theme }) => theme.white};
+  background-color: ${(props) => props.color};
 `

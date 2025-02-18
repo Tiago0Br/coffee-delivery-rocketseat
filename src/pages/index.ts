@@ -1,2 +1,1 @@
-export * from './home/home'
-export * from './checkout/checkout'
+export { Home } from './home'
