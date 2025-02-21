@@ -53,3 +53,75 @@ export const ItemIcon = styled.span<{ color: string }>`
   color: ${({ theme }) => theme.white};
   background-color: ${(props) => props.color};
 `
+
+export const CoffeesContainer = styled.div`
+  margin-top: 4rem;
+  h2 {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 2rem;
+    color: ${({ theme }) => theme.subtitle};
+  }
+`
+
+export const CoffeeList = styled.div`
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5rem 2rem;
+`
+
+export const CoffeeItem = styled.div`
+  max-width: 256px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: ${({ theme }) => theme.card};
+  border-radius: 6px 36px 6px 36px;
+  padding: 1.25rem;
+  text-align: center;
+
+  img {
+    margin: -2.25rem auto 1.25rem;
+  }
+
+  h2 {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 1.25rem;
+    color: ${({ theme }) => theme.subtitle};
+  }
+
+  p {
+    font-size: 0.875rem;
+    color: ${({ theme }) => theme.label};
+    line-height: 130%;
+  }
+`
+
+export const CoffeeTagContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+`
+
+export const CoffeeTag = styled.span`
+  padding: 0.25rem 0.5rem;
+  border-radius: 100px;
+  background-color: ${({ theme }) => theme['yellow-light']};
+  color: ${({ theme }) => theme['yellow-dark']};
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  font-weight: 700;
+`
+
+export const CoffeePrice = styled.div`
+  font-family: 'Baloo 2', sans-serif;
+  color: ${({ theme }) => theme.text};
+  span {
+    font-size: 0.875rem;
+  }
+
+  strong {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+`

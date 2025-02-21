@@ -1,10 +1,27 @@
+import { useEffect, useState } from 'react'
 import { useTheme } from 'styled-components'
 import { ShoppingCart, Package, Timer, Coffee } from 'phosphor-react'
 import banner from '@/assets/coffee-delivery.png'
 import * as Styles from './styles'
 
+interface Coffee {
+  id: number
+  title: string
+  description: string
+  price: number
+  image: string
+  tags: string[]
+}
+
 export function Home() {
   const theme = useTheme()
+  const [coffeeList, setCoffeeList] = useState<Coffee[]>([])
+
+  useEffect(() => {
+    fetch('/coffees.json')
+      .then((response) => response.json())
+      .then((data) => setCoffeeList(data))
+  }, [])
 
   return (
     <div>
@@ -50,6 +67,36 @@ export function Home() {
           draggable="false"
         />
       </Styles.IntroContainer>
+      <Styles.CoffeesContainer>
+        <h2>Nossos Cafés</h2>
+        <Styles.CoffeeList>
+          {coffeeList.map((coffee) => (
+            <Styles.CoffeeItem key={coffee.id}>
+              <img
+                src={`/coffee/${coffee.image}`}
+                alt={coffee.title}
+                draggable="false"
+              />
+              <Styles.CoffeeTagContainer>
+                {coffee.tags.map((tag) => (
+                  <Styles.CoffeeTag key={tag}>{tag}</Styles.CoffeeTag>
+                ))}
+              </Styles.CoffeeTagContainer>
+
+              <h2>{coffee.title}</h2>
+
+              <p>{coffee.description}</p>
+
+              <div>
+                <Styles.CoffeePrice>
+                  <span>R$ </span>
+                  <strong>{coffee.price.toFixed(2).replace('.', ',')}</strong>
+                </Styles.CoffeePrice>
+              </div>
+            </Styles.CoffeeItem>
+          ))}
+        </Styles.CoffeeList>
+      </Styles.CoffeesContainer>
     </div>
   )
 }
