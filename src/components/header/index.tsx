@@ -5,7 +5,7 @@ import * as Styles from './styles'
 export function Header() {
   return (
     <Styles.HeaderContainer>
-      <img src={logo} alt="Logo do sistema Coffee Delivery" />
+      <img src={logo} alt="Logo do sistema Coffee Delivery" draggable="false" />
 
       <Styles.ButtonsContainer>
         <Styles.LocationButton>

@@ -113,6 +113,12 @@ export const CoffeeTag = styled.span`
   font-weight: 700;
 `
 
+export const CoffeeItemFooter = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 export const CoffeePrice = styled.div`
   font-family: 'Baloo 2', sans-serif;
   color: ${({ theme }) => theme.text};
@@ -123,5 +129,30 @@ export const CoffeePrice = styled.div`
   strong {
     font-size: 1.5rem;
     font-weight: bold;
+  }
+`
+
+export const CoffeeQuantity = styled.div`
+  margin-left: 1.25rem;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  background-color: ${({ theme }) => theme.button};
+  font-size: 1.2rem;
+
+  button {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border: none;
+    background-color: transparent;
+    color: ${({ theme }) => theme.purple};
+    cursor: pointer;
+  }
+
+  button:hover {
+    color: ${({ theme }) => theme['purple-dark']};
   }
 `

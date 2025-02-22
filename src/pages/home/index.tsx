@@ -87,12 +87,18 @@ export function Home() {
 
               <p>{coffee.description}</p>
 
-              <div>
+              <Styles.CoffeeItemFooter>
                 <Styles.CoffeePrice>
                   <span>R$ </span>
                   <strong>{coffee.price.toFixed(2).replace('.', ',')}</strong>
                 </Styles.CoffeePrice>
-              </div>
+
+                <Styles.CoffeeQuantity>
+                  <button>-</button>
+                  <span>1</span>
+                  <button>+</button>
+                </Styles.CoffeeQuantity>
+              </Styles.CoffeeItemFooter>
             </Styles.CoffeeItem>
           ))}
         </Styles.CoffeeList>
