@@ -3,7 +3,8 @@ import {
   CreditCard,
   CurrencyDollar,
   MapPinLine,
-  Money
+  Money,
+  Trash
 } from 'phosphor-react'
 import * as Styles from './styles'
 import { useTheme } from 'styled-components'
@@ -85,6 +86,65 @@ export function Checkout() {
 
       <Styles.OrderContainer>
         <h2>Cafés selecionados</h2>
+
+        <Styles.CoffeeContainer>
+          <Styles.CoffeeItem>
+            <img src="/coffee/arabe.png" alt="Café árabe" />
+            <Styles.InfoContainer>
+              <span>Expresso Tradicional</span>
+              <div>
+                <Styles.CoffeeQuantity>
+                  <button type="button">-</button>
+                  <span>1</span>
+                  <button type="button">+</button>
+                </Styles.CoffeeQuantity>
+                <Styles.RemoveButton type="button">
+                  <Trash size={18} color={theme.purple} />
+                  Remover
+                </Styles.RemoveButton>
+              </div>
+            </Styles.InfoContainer>
+            <strong>R$ 9,90</strong>
+          </Styles.CoffeeItem>
+          <hr />
+          <Styles.CoffeeItem>
+            <img src="/coffee/latte.png" alt="Café latte" />
+            <Styles.InfoContainer>
+              <span>Latte</span>
+              <div>
+                <Styles.CoffeeQuantity>
+                  <button type="button">-</button>
+                  <span>1</span>
+                  <button type="button">+</button>
+                </Styles.CoffeeQuantity>
+                <Styles.RemoveButton type="button">
+                  <Trash size={18} color={theme.purple} />
+                  Remover
+                </Styles.RemoveButton>
+              </div>
+            </Styles.InfoContainer>
+            <strong>R$ 9,90</strong>
+          </Styles.CoffeeItem>
+          <hr />
+          <Styles.PriceContainer>
+            <div>
+              <span>Total de itens</span>
+              <span>R$ 19,70</span>
+            </div>
+            <div>
+              <span>Entrega</span>
+              <span>R$ 5,00</span>
+            </div>
+            <div>
+              <strong>Total</strong>
+              <strong>R$ 24,70</strong>
+            </div>
+          </Styles.PriceContainer>
+
+          <Styles.ConfirmButton type="submit">
+            Confirmar pedido
+          </Styles.ConfirmButton>
+        </Styles.CoffeeContainer>
       </Styles.OrderContainer>
     </Styles.CheckoutContainer>
   )

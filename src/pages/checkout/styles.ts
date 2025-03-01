@@ -114,4 +114,136 @@ export const PaymentOption = styled.div`
     background-color: ${({ theme }) => theme['purple-light']};
     outline: 1px solid ${({ theme }) => theme.purple};
   }
+
+  label:hover {
+    background-color: ${({ theme }) => theme.hover};
+  }
+`
+
+export const CoffeeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 40px;
+  background-color: ${({ theme }) => theme.card};
+  border-radius: 6px 36px 6px 36px;
+
+  hr {
+    border: none;
+    border-top: 1px solid ${({ theme }) => theme.button};
+  }
+`
+
+export const CoffeeItem = styled.div`
+  display: flex;
+  gap: 20px;
+
+  img {
+    width: 64px;
+    height: 64px;
+  }
+
+  strong {
+    font-size: 1.125rem;
+    color: ${({ theme }) => theme.text};
+  }
+`
+
+export const InfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  span {
+    font-size: 1rem;
+    color: ${({ theme }) => theme.subtitle};
+  }
+
+  div {
+    display: flex;
+    gap: 6px;
+  }
+`
+
+export const CoffeeQuantity = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: ${({ theme }) => theme.button};
+  border-radius: 6px;
+
+  button {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border: none;
+    background-color: transparent;
+    color: ${({ theme }) => theme.purple};
+    cursor: pointer;
+  }
+
+  button:first-child {
+    border-radius: 6px 0 0 6px;
+  }
+
+  button:last-child {
+    border-radius: 0 6px 6px 0;
+  }
+
+  button:hover {
+    color: ${({ theme }) => theme['purple-dark']};
+    background-color: ${({ theme }) => theme.hover};
+  }
+`
+
+export const RemoveButton = styled.button`
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: none;
+  background-color: ${({ theme }) => theme.button};
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  gap: 4px;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.hover};
+  }
+`
+
+export const PriceContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+
+    strong {
+      font-size: 1.2rem;
+    }
+  }
+`
+
+export const ConfirmButton = styled.button`
+  background-color: ${({ theme }) => theme.yellow};
+  color: ${({ theme }) => theme.white};
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme }) => theme['yellow-dark']};
+    transition: 0.3s;
+  }
 `

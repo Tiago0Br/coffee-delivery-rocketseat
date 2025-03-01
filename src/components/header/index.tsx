@@ -5,7 +5,13 @@ import * as Styles from './styles'
 export function Header() {
   return (
     <Styles.HeaderContainer>
-      <img src={logo} alt="Logo do sistema Coffee Delivery" draggable="false" />
+      <a href="/">
+        <img
+          src={logo}
+          alt="Logo do sistema Coffee Delivery"
+          draggable="false"
+        />
+      </a>
 
       <Styles.ButtonsContainer>
         <Styles.LocationButton>
@@ -13,9 +19,11 @@ export function Header() {
           <span>Porto Alegre, RS</span>
         </Styles.LocationButton>
 
-        <Styles.CartButton>
-          <ShoppingCart size={22} weight="fill" />
-        </Styles.CartButton>
+        <a href="/checkout">
+          <Styles.CartButton>
+            <ShoppingCart size={22} weight="fill" />
+          </Styles.CartButton>
+        </a>
       </Styles.ButtonsContainer>
     </Styles.HeaderContainer>
   )

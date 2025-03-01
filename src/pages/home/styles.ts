@@ -117,6 +117,7 @@ export const CoffeeItemFooter = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 0.5rem;
 `
 
 export const CoffeePrice = styled.div`
@@ -133,12 +134,10 @@ export const CoffeePrice = styled.div`
 `
 
 export const CoffeeQuantity = styled.div`
-  margin-left: 1.25rem;
   display: flex;
   align-items: center;
-  border-radius: 6px;
   background-color: ${({ theme }) => theme.button};
-  font-size: 1.2rem;
+  border-radius: 6px;
 
   button {
     font-size: 1.2rem;
@@ -152,7 +151,27 @@ export const CoffeeQuantity = styled.div`
     cursor: pointer;
   }
 
+  button:first-child {
+    border-radius: 6px 0 0 6px;
+  }
+
+  button:last-child {
+    border-radius: 0 6px 6px 0;
+  }
+
   button:hover {
     color: ${({ theme }) => theme['purple-dark']};
+    background-color: ${({ theme }) => theme.hover};
   }
+`
+
+export const CartButton = styled.button`
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  background-color: ${({ theme }) => theme['purple-dark']};
+  color: ${({ theme }) => theme.white};
+  cursor: pointer;
 `

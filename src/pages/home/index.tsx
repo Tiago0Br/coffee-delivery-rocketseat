@@ -94,10 +94,14 @@ export function Home() {
                 </Styles.CoffeePrice>
 
                 <Styles.CoffeeQuantity>
-                  <button>-</button>
+                  <button type="button">-</button>
                   <span>1</span>
-                  <button>+</button>
+                  <button type="button">+</button>
                 </Styles.CoffeeQuantity>
+
+                <Styles.CartButton type="button">
+                  <ShoppingCart size={22} weight="fill" />
+                </Styles.CartButton>
               </Styles.CoffeeItemFooter>
             </Styles.CoffeeItem>
           ))}
