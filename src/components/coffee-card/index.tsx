@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react'
+import { toast } from 'sonner'
 import { ShoppingCart } from 'phosphor-react'
 import { Coffee } from '@/pages/home'
-import * as Styles from './styles'
 import { CartContext } from '@/contexts/cart-context'
-import { toast } from 'sonner'
+import * as Styles from './styles'
 
-export function CoffeeItem({ coffee }: { coffee: Coffee }) {
+export function CoffeeCard({ coffee }: { coffee: Coffee }) {
   const [coffeeQuantity, setCoffeeQuantity] = useState(1)
   const { addItem } = useContext(CartContext)
 

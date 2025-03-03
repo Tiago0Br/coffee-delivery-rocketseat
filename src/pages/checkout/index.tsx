@@ -4,25 +4,17 @@ import {
   CreditCard,
   CurrencyDollar,
   MapPinLine,
-  Money,
-  Trash
+  Money
 } from 'phosphor-react'
 import { useTheme } from 'styled-components'
-import { toast } from 'sonner'
 import { CartContext } from '@/contexts/cart-context'
 import { priceFormatter } from '@/utils/formatter'
-import { Coffee } from '../home'
+import { CoffeeItemCheckout } from '@/components'
 import * as Styles from './styles'
 
 export function Checkout() {
   const theme = useTheme()
-  const { items, removeItem, getPrice } = useContext(CartContext)
-
-  function handleRemoveItem(coffee: Coffee) {
-    removeItem(coffee)
-
-    toast.success('Café removido do carrinho')
-  }
+  const { items, getPrice, deliveryPrice } = useContext(CartContext)
 
   return (
     <>
@@ -105,29 +97,7 @@ export function Checkout() {
             <Styles.CoffeeContainer>
               {items.map(({ coffee, quantity }) => (
                 <React.Fragment key={coffee.id}>
-                  <Styles.CoffeeItem>
-                    <img src={`/coffee/${coffee.image}`} alt={coffee.title} />
-                    <Styles.InfoContainer>
-                      <span>{coffee.title}</span>
-                      <div>
-                        <Styles.CoffeeQuantity>
-                          <button type="button">-</button>
-                          <span>{quantity}</span>
-                          <button type="button">+</button>
-                        </Styles.CoffeeQuantity>
-                        <Styles.RemoveButton
-                          type="button"
-                          onClick={() => handleRemoveItem(coffee)}
-                        >
-                          <Trash size={18} color={theme.purple} />
-                          Remover
-                        </Styles.RemoveButton>
-                      </div>
-                    </Styles.InfoContainer>
-                    <strong>
-                      {priceFormatter.format(coffee.price * quantity)}
-                    </strong>
-                  </Styles.CoffeeItem>
+                  <CoffeeItemCheckout coffee={coffee} quantity={quantity} />
                   <hr />
                 </React.Fragment>
               ))}
@@ -138,11 +108,13 @@ export function Checkout() {
                 </div>
                 <div>
                   <span>Entrega</span>
-                  <span>{priceFormatter.format(5)}</span>
+                  <span>{priceFormatter.format(deliveryPrice)}</span>
                 </div>
                 <div>
                   <strong>Total</strong>
-                  <strong>{priceFormatter.format(getPrice() + 5)}</strong>
+                  <strong>
+                    {priceFormatter.format(getPrice() + deliveryPrice)}
+                  </strong>
                 </div>
               </Styles.PriceContainer>
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useTheme } from 'styled-components'
 import { ShoppingCart, Package, Timer, Coffee } from 'phosphor-react'
-import { CoffeeItem } from '@/components'
+import { CoffeeCard } from '@/components'
 import banner from '@/assets/coffee-delivery.png'
 import * as Styles from './styles'
 
@@ -72,7 +72,7 @@ export function Home() {
         <h2>Nossos Cafés</h2>
         <Styles.CoffeeList>
           {coffeeList.map((coffee) => (
-            <CoffeeItem key={coffee.id} coffee={coffee} />
+            <CoffeeCard key={coffee.id} coffee={coffee} />
           ))}
         </Styles.CoffeeList>
       </Styles.CoffeesContainer>

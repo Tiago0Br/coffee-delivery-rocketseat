@@ -1,2 +1,3 @@
 export { Header } from './header'
-export { CoffeeItem } from './coffee-item'
+export { CoffeeCard } from './coffee-card'
+export { CoffeeItemCheckout } from './coffee-item-checkout'
