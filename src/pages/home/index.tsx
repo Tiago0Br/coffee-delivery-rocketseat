@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useTheme } from 'styled-components'
 import { ShoppingCart, Package, Timer, Coffee } from 'phosphor-react'
+import { CoffeeItem } from '@/components'
 import banner from '@/assets/coffee-delivery.png'
 import * as Styles from './styles'
 
-interface Coffee {
+export interface Coffee {
   id: number
   title: string
   description: string
@@ -57,7 +58,7 @@ export function Home() {
               <Styles.ItemIcon color={theme['purple']}>
                 <Coffee weight="fill" size={14} />
               </Styles.ItemIcon>
-              O café chega fresqueinho até você
+              O café chega fresquinho até você
             </li>
           </Styles.ItemsContainer>
         </Styles.InfoContainer>
@@ -71,39 +72,7 @@ export function Home() {
         <h2>Nossos Cafés</h2>
         <Styles.CoffeeList>
           {coffeeList.map((coffee) => (
-            <Styles.CoffeeItem key={coffee.id}>
-              <img
-                src={`/coffee/${coffee.image}`}
-                alt={coffee.title}
-                draggable="false"
-              />
-              <Styles.CoffeeTagContainer>
-                {coffee.tags.map((tag) => (
-                  <Styles.CoffeeTag key={tag}>{tag}</Styles.CoffeeTag>
-                ))}
-              </Styles.CoffeeTagContainer>
-
-              <h2>{coffee.title}</h2>
-
-              <p>{coffee.description}</p>
-
-              <Styles.CoffeeItemFooter>
-                <Styles.CoffeePrice>
-                  <span>R$ </span>
-                  <strong>{coffee.price.toFixed(2).replace('.', ',')}</strong>
-                </Styles.CoffeePrice>
-
-                <Styles.CoffeeQuantity>
-                  <button type="button">-</button>
-                  <span>1</span>
-                  <button type="button">+</button>
-                </Styles.CoffeeQuantity>
-
-                <Styles.CartButton type="button">
-                  <ShoppingCart size={22} weight="fill" />
-                </Styles.CartButton>
-              </Styles.CoffeeItemFooter>
-            </Styles.CoffeeItem>
+            <CoffeeItem key={coffee.id} coffee={coffee} />
           ))}
         </Styles.CoffeeList>
       </Styles.CoffeesContainer>
