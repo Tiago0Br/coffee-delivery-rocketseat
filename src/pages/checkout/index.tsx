@@ -6,20 +6,44 @@ import {
   MapPinLine,
   Money
 } from 'phosphor-react'
+import { z } from 'zod'
 import { useTheme } from 'styled-components'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { CartContext } from '@/contexts/cart-context'
 import { priceFormatter } from '@/utils/formatter'
 import { CoffeeItemCheckout } from '@/components'
 import * as Styles from './styles'
 
+const orderDetailsFormSchema = z.object({
+  zipcode: z.string().nonempty(),
+  street: z.string().nonempty(),
+  number: z.coerce.number(),
+  complement: z.string().optional(),
+  district: z.string().nonempty(),
+  city: z.string().nonempty(),
+  state: z.string().nonempty(),
+  paymentOption: z.enum(['credit', 'debit', 'cash'])
+})
+
+type orderDetailsFormInputs = z.infer<typeof orderDetailsFormSchema>
+
 export function Checkout() {
   const theme = useTheme()
   const { items, getPrice, deliveryPrice } = useContext(CartContext)
 
+  const { register, handleSubmit } = useForm<orderDetailsFormInputs>({
+    resolver: zodResolver(orderDetailsFormSchema)
+  })
+
+  function handleCreateOrder(data: orderDetailsFormInputs) {
+    console.log(data)
+  }
+
   return (
     <>
       {items.length > 0 ? (
-        <Styles.CheckoutContainer>
+        <Styles.CheckoutForm onSubmit={handleSubmit(handleCreateOrder)}>
           <Styles.CheckoutFormContainer>
             <h2>Complete seu pedido</h2>
 
@@ -36,17 +60,38 @@ export function Checkout() {
 
               <Styles.AddressForm>
                 <Styles.InputGroup>
-                  <Styles.FormInput placeholder="CEP" width="30%" />
-                  <Styles.FormInput placeholder="Rua" />
+                  <Styles.FormInput
+                    placeholder="CEP"
+                    width="30%"
+                    {...register('zipcode')}
+                  />
+                  <Styles.FormInput placeholder="Rua" {...register('street')} />
                 </Styles.InputGroup>
                 <Styles.InputGroup>
-                  <Styles.FormInput placeholder="Número" width="30%" />
-                  <Styles.FormInput placeholder="Complemento" />
+                  <Styles.FormInput
+                    placeholder="Número"
+                    width="30%"
+                    {...register('number')}
+                  />
+                  <Styles.FormInput
+                    placeholder="Complemento"
+                    {...register('complement')}
+                  />
                 </Styles.InputGroup>
                 <Styles.InputGroup>
-                  <Styles.FormInput placeholder="Bairro" />
-                  <Styles.FormInput placeholder="Cidade" />
-                  <Styles.FormInput placeholder="UF" width="20%" />
+                  <Styles.FormInput
+                    placeholder="Bairro"
+                    {...register('district')}
+                  />
+                  <Styles.FormInput
+                    placeholder="Cidade"
+                    {...register('city')}
+                  />
+                  <Styles.FormInput
+                    placeholder="UF"
+                    width="20%"
+                    {...register('state')}
+                  />
                 </Styles.InputGroup>
               </Styles.AddressForm>
             </Styles.FormContainer>
@@ -67,21 +112,36 @@ export function Checkout() {
 
               <Styles.PaymentOptionContainer>
                 <Styles.PaymentOption>
-                  <input type="radio" name="payment" id="credit-card" />
+                  <input
+                    type="radio"
+                    id="credit-card"
+                    value="credit"
+                    {...register('paymentOption')}
+                  />
                   <label htmlFor="credit-card">
                     <CreditCard size={16} color={theme['purple']} />
                     Cartão de crédito
                   </label>
                 </Styles.PaymentOption>
                 <Styles.PaymentOption>
-                  <input type="radio" name="payment" id="debit-card" />
+                  <input
+                    type="radio"
+                    id="debit-card"
+                    value="debit"
+                    {...register('paymentOption')}
+                  />
                   <label htmlFor="debit-card">
                     <Bank size={16} color={theme['purple']} />
                     Cartão de debito
                   </label>
                 </Styles.PaymentOption>
                 <Styles.PaymentOption>
-                  <input type="radio" name="payment" id="cash" />
+                  <input
+                    type="radio"
+                    id="cash"
+                    value="cash"
+                    {...register('paymentOption')}
+                  />
                   <label htmlFor="cash">
                     <Money size={16} color={theme['purple']} />
                     Dinheiro
@@ -123,7 +183,7 @@ export function Checkout() {
               </Styles.ConfirmButton>
             </Styles.CoffeeContainer>
           </Styles.OrderContainer>
-        </Styles.CheckoutContainer>
+        </Styles.CheckoutForm>
       ) : (
         <h1>Seu carrinho está vazio</h1>
       )}
