@@ -1,10 +1,20 @@
-import deliveryIllustration from '/delivery-illustration.svg'
-import * as Styles from './styles'
+import { useContext } from 'react'
 import { useTheme } from 'styled-components'
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
+import deliveryIllustration from '/delivery-illustration.svg'
+import { CartContext } from '@/contexts/cart-context'
+import * as Styles from './styles'
 
 export function Ordered() {
   const theme = useTheme()
+  const { deliveryInfo, getPaymentOption } = useContext(CartContext)
+
+  if (!deliveryInfo) {
+    location.href = '/'
+    return
+  }
+
+  const { address, paymentOption } = deliveryInfo
 
   return (
     <Styles.OrderedContainer>
@@ -21,7 +31,8 @@ export function Ordered() {
             <p>
               Entrega em{' '}
               <strong>
-                Rua João Daniel Martinelli, 102, Farrapos - Porto Alegre, RS
+                {address.street}, {address.number}, {address.district} -{' '}
+                {address.city}, {address.state}
               </strong>
             </p>
           </Styles.InfoItem>
@@ -40,7 +51,7 @@ export function Ordered() {
             </div>
             <p>
               Pagamento na entrega <br />
-              <strong>Cartão de crédito</strong>
+              <strong>{getPaymentOption(paymentOption)}</strong>
             </p>
           </Styles.InfoItem>
         </Styles.DeliveryContainer>

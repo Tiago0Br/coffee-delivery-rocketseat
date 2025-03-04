@@ -10,6 +10,7 @@ export const CheckoutFormContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  max-width: 689px;
 
   h2 {
     font-family: 'Baloo 2', sans-serif;
@@ -60,17 +61,26 @@ export const InputGroup = styled.div`
   gap: 0.75rem;
 `
 
-export const FormInput = styled.input<{ width?: string }>`
-  padding: 0.75rem;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.button};
-  background-color: ${({ theme }) => theme.input};
-  &:focus,
-  &:active {
-    outline: 1px solid ${({ theme }) => theme['yellow-dark']};
+export const FormInput = styled.div<{ width?: string }>`
+  width: ${(props) => props.width || '100%'};
+
+  input {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid ${({ theme }) => theme.button};
+    background-color: ${({ theme }) => theme.input};
   }
 
-  width: ${(props) => props.width || '100%'};
+  input:focus,
+  input:active {
+    outline: 1px solid ${({ theme }) => theme['yellow-dark']};
+  }
+`
+
+export const ErrorMessage = styled.span`
+  font-size: 0.75rem;
+  color: red;
 `
 
 export const OrderContainer = styled.div`

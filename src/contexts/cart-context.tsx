@@ -7,6 +7,19 @@ interface Item {
   quantity: number
 }
 
+interface DeliveryInfo {
+  address: {
+    zipcode: number
+    street: string
+    number: number
+    complement?: string
+    district: string
+    city: string
+    state: string
+  }
+  paymentOption: 'credit' | 'debit' | 'cash'
+}
+
 interface CartContextType {
   items: Item[]
   deliveryPrice: number
@@ -14,6 +27,9 @@ interface CartContextType {
   removeItem: (coffee: Coffee) => void
   updateItem: (coffee: Coffee, quantity: number) => void
   getPrice: () => number
+  deliveryInfo: DeliveryInfo | null
+  addDeliveryInfo: (deliveryInfo: DeliveryInfo) => void
+  getPaymentOption: (paymentOption: 'credit' | 'debit' | 'cash') => string
 }
 
 interface CartContextProviderProps {
@@ -28,8 +44,16 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
     return items ? JSON.parse(items) : []
   }
 
+  function getDeliveryInfoLocalStorage(): DeliveryInfo | null {
+    const deliveryInfo = LocalStorage.getItem('delivery_info')
+    return deliveryInfo ? JSON.parse(deliveryInfo) : null
+  }
+
   const deliveryPrice = 5
   const [items, setItems] = useState<Item[]>(getItemsLocalStorage)
+  const [deliveryInfo, setDeliveryInfo] = useState<DeliveryInfo | null>(
+    getDeliveryInfoLocalStorage
+  )
 
   function addItem(coffee: Coffee, quantity: number) {
     setItems((prevItems) => [
@@ -69,6 +93,22 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
     }, 0)
   }
 
+  function addDeliveryInfo(deliveryInfo: DeliveryInfo) {
+    setDeliveryInfo(deliveryInfo)
+
+    LocalStorage.setItem('delivery_info', JSON.stringify(deliveryInfo))
+  }
+
+  function getPaymentOption(paymentOption: 'credit' | 'debit' | 'cash') {
+    if (paymentOption === 'credit') {
+      return 'Cartão de Crédito'
+    } else if (paymentOption === 'debit') {
+      return 'Cartão de Débito'
+    } else {
+      return 'Dinheiro'
+    }
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -77,7 +117,10 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
         addItem,
         removeItem,
         getPrice,
-        updateItem
+        updateItem,
+        deliveryInfo,
+        addDeliveryInfo,
+        getPaymentOption
       }}
     >
       {children}
