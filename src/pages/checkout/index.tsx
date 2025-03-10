@@ -12,6 +12,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CartContext } from '@/contexts/cart-context'
 import { priceFormatter } from '@/utils/formatter'
+import { getAddress, ViacepAddress } from '@/services/viacep'
 import { CoffeeItemCheckout } from '@/components'
 import * as Styles from './styles'
 
@@ -33,6 +34,8 @@ const orderDetailsFormSchema = z.object({
 type orderDetailsFormInputs = z.infer<typeof orderDetailsFormSchema>
 
 export function Checkout() {
+  const [address, setAddress] = React.useState<ViacepAddress | null>(null)
+
   const theme = useTheme()
   const { items, getPrice, deliveryPrice, addDeliveryInfo } =
     useContext(CartContext)
@@ -62,6 +65,11 @@ export function Checkout() {
     location.href = '/ordered'
   }
 
+  function handleGetAddress(cep: string) {
+    if (cep.length !== 8) return
+    getAddress(cep).then(setAddress)
+  }
+
   return (
     <>
       {items.length > 0 ? (
@@ -88,6 +96,7 @@ export function Checkout() {
                       min={0}
                       placeholder="CEP"
                       {...register('zipcode', { valueAsNumber: true })}
+                      onBlur={(e) => handleGetAddress(e.target.value)}
                     />
                     {errors.zipcode && (
                       <Styles.ErrorMessage>
@@ -99,6 +108,7 @@ export function Checkout() {
                     <input
                       type="text"
                       placeholder="Rua"
+                      value={address?.logradouro ?? ''}
                       {...register('street')}
                     />
                     {errors.street && (
@@ -126,6 +136,7 @@ export function Checkout() {
                     <input
                       type="text"
                       placeholder="Complemento"
+                      value={address?.complemento ?? ''}
                       {...register('complement')}
                     />
                     {errors.complement && (
@@ -140,6 +151,7 @@ export function Checkout() {
                     <input
                       type="text"
                       placeholder="Bairro"
+                      value={address?.bairro ?? ''}
                       {...register('district')}
                     />
                     {errors.district && (
@@ -152,6 +164,7 @@ export function Checkout() {
                     <input
                       type="text"
                       placeholder="Cidade"
+                      value={address?.localidade ?? ''}
                       {...register('city')}
                     />
                     {errors.city && (
@@ -164,6 +177,7 @@ export function Checkout() {
                     <input
                       type="text"
                       placeholder="UF"
+                      value={address?.uf ?? ''}
                       {...register('state')}
                     />
                     {errors.state && (
